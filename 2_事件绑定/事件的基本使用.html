@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue事件绑定</title>
+</head>
+<style>
+    *{
+        margin:10px;
+    }
+</style>
+<body>
+    <div id="root">
+        <h1>你好，{{name}}</h1>
+        <!-- 绑定时间v-on:，可简写为@ -->
+        <!-- @click为鼠标事件 -->
+        <button v-on:click="showInfo1">点我提示信息(不传参)</button><br/>
+        <!-- 使用event可以传递更多的参数 -->
+        <button @click="showInfo2($event,666)">点我提示信息（传参）</button>
+        <!-- Vue中的事件修饰符 -->
+        <!-- prevent阻止默认事件 修饰符可以连着写-->
+        <a href="http://www.liph.top" @click.prevent='showInfo3'>点我跳转</a>
+        <!-- stop阻止冒泡 -->
+        <div class="demo1" @click="showInfo3"><button @click.stop='showInfo3'>点我冒泡</button></div>
+        <!-- once事件只触发一次 -->
+        <button @click.once='showInfo3'>点我冒泡</button>
+
+        <hr>
+        <h2>键盘事件</h2>
+        <!-- 键盘按下在松手@keyup,按下@keydown -->
+        <!-- enter回车，delete退格，esc退出，space空格，tab换行，上下左右 -->
+        <input type="text" placeholder="按下回车提示输入" @keyup.enter='showTip'>
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el:'#root',
+        data:{
+            name:'辉哥'
+        },
+        methods:{
+            showInfo1(){
+                alert("同学你好！")
+            },
+            showInfo2(event,num){
+                alert("同学你好！"+num)
+            },
+            showInfo3(e){
+                alert("跳转")
+            },
+            showTip(e){
+                console.log('请输入信息')
+            }
+        }
+    })
+</script>
+</html>

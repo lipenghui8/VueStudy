@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue练习</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    //插值语法
+    <div id="root">
+        <h1>你好，{{name}},我是{{master}}</h1>
+    <hr>
+    //指令语法,单向数据绑定v-bind,简写为:
+        <a :href="website.url">{{website.name}}</a>
+    //双向数据绑定v-model
+    <hr>
+    <input type="text" v-model="name">
+    </div>
+    
+
+    <script>
+        //创建Vue实例
+        const vm=new Vue({
+            el:'#root',//el指定所服务的容器
+            //data的第一种写法，对象式
+            data:{//data用于储储数据，供el所指定的容器使用
+                name:'张三',
+                master:'辉哥',
+                website:{
+                    name:'liph',
+                    url:"https://liph.top"
+                }                
+            }
+            
+            //data的第二种写法，函数式
+            // data(){
+            //     return{
+            //         name:'辉哥'
+            //     }
+            // }
+            
+        })
+        //数据绑定
+        let person={
+                
+            }
+        Object.defineProperty(person,'age',{
+                value:18
+            })
+    </script>
+</body>
+</html>
