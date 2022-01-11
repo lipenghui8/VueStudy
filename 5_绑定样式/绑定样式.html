@@ -21,7 +21,15 @@
 </style>
 <body>
     <div id="root">
-        <div>test</div>
+        <!-- 绑定class样式（字符串写法），适用于样式的类名不确定，需要动态指定，使用:class，修改其值即可 -->
+        <div class="basic" :class="mind" @click="changeMind">{{name}}</div><br/><br/>
+        <!-- 绑定class样式（数组写法） -->
+        <div class="basic" :class="arr" @click="changeMind">{{name}}</div><br/><br/>
+        <!-- 绑定class样式（对象写法），动态决定是否使用 -->
+        <div class="basic" :class="obj" @click="changeMind">{{name}}</div><br/><br/>
+
+        <!-- 绑定style式,写成对象，用得较少 -->
+        <div class="basic" :style="styleObj">{{name}}</div><br/><br/>
     </div>
 </body>
 <script src="../js/vue.js"></script>
@@ -29,10 +37,22 @@
     const vm=new Vue({
         el:"#root",
         data:{
-
+            name:'辉哥',
+            mind:'happy',
+            arr:['basic','happy'],
+            obj:{
+                happy:false,
+                sad:false
+            },
+            styleObj:{
+                color:"red",
+                fontSize:'30px'
+            }
         },
         methods: {
-            
+            changeMind(){
+                this.mind='sad'
+            }
         }
     })
     vue

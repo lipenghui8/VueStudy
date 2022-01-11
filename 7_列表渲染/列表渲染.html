@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+        <h1>基本列表</h1>
+        <!-- 遍历数组 -->
+        <ul>
+            <li v-for="p in persons" :key="p.id">
+                {{p.id}}-{{p.name}}
+            </li>
+        </ul>
+        <!-- 遍历对象 -->
+        <ul>
+            <li v-for="(v,k) in cars" :key="v">
+                {{k}}--{{v}}
+            </li>
+        </ul>
+        <!-- 遍历字符串 -->
+        <ul>
+            <li v-for="(char,index) in str" :key="index">
+                {{char}}
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    const vm =new Vue({
+        el:"#root",
+        data:{
+            persons:[
+                {id:'1',name:'张三'},
+                {id:'2',name:'李四'},
+                {id:'3',name:'王五'}
+            ],
+            cars:{
+                name:'奥迪A8',
+                price:'70W',
+                color:'黑色'
+            },
+            str:'hello'
+        }
+    })
+</script>
+</html>

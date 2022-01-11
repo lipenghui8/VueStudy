@@ -395,7 +395,8 @@
     /**
      * Show production mode tip message on boot?
      */
-    productionTip: "development" !== 'production',
+    productionTip: false,
+    // productionTip: "development" !== 'production',
 
     /**
      * Whether to enable devtools
