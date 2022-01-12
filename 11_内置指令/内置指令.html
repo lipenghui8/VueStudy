@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内置指令</title>
+</head>
+<style>
+    [v-cloak]{
+        display: none;
+    }
+</style>
+<body>
+    <div id="root">
+        <!-- v-text 但是更多时候用插值语法-->
+        <div v-text="intro"></div>
+        <!-- v-html 支持结构的解析，不安全 -->
+        <div v-html="str"></div>
+        <!-- v-cloak Vue接管容器后即把v-cloak移除，配合css使用，解决网速慢时展示{{XXX}}的问题-->
+        <div v-cloak>huige</div>
+        <!-- v-once  以后数据的改变不会引起v-once所在结构的更新，用于优化性能-->
+        <div v-once>{{n}}</div>
+        <button @click="n++">n++</button>
+        <!-- v-pre 跳过所在节点的编译过程，可以加快编译-->
+        <div></div>
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    const vm=new Vue({
+        el:'#root',
+        data:{
+            intro:'社会你辉哥',
+            str:'<h3>辉哥</h3>',
+            n:1
+        }
+    })
+</script>
+</html>
