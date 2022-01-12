@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内置指令</title>
+</head>
+<style>
+    [v-cloak]{
+        display: none;
+    }
+</style>
+<body>
+    <div id="root">
+        <h1>{{n}}</h1>
+        <h1>放大十倍后的值为：<span v-big="n"></span></h1>
+        <button @click="n++">n+1</button><br><br>
+        <input type="text" v-fbind:value="n">
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    const vm=new Vue({
+        el:'#root',
+        data:{
+            n:1
+        },
+        //自定义指令，指令多个单词用-分隔
+        directives:{
+            //指令与元素绑定是调用，模板重新解析是调用
+            //函数式写法
+            big(element,binding){
+                element.innerText=binding.value*10
+            },
+            //对象式写法
+            fbind:{
+                //绑定时调用
+                bind(){
+                    
+                },
+                //指令所在元素被成功插入页面时调用
+                inserted(){
+
+                },
+                //模板被冲洗解析时调用
+                update(){
+
+                }
+            }
+        }
+    })
+</script>
+</html>
