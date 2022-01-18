@@ -8,7 +8,7 @@
         <button>点击年龄加一</button>
     </div>
 </template>
-
+<!-- 使用nanoid可以生产全球唯一的字符串 -->
 <script>    
     export default {
         data() {
