@@ -14,4 +14,8 @@ Vue.use(plugins)
 //创建Vue实例对象
 new Vue({
   render: h => h(App),
+  //定义x用于全局事件总线
+  beforeCreate(){
+    Vue.prototype.$bus=this//安装全局事件总线
+  }
 }).$mount('#app')

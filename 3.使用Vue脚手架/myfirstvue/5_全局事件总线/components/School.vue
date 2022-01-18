@@ -7,7 +7,6 @@
 </template>
 <!-- 使用nanoid可以生产全球唯一的字符串 -->
 <script>    
-    import pubsub from 'pubsub-js'//引入消息订阅系统
     export default {
         data() {
             return {
@@ -15,17 +14,20 @@
                 address:'开封'
             }
         },
-        mounted() {
-            //每次订阅pubId都是不同的值，通过这个值取消订阅
-            this.pubId=pubsub.subscribe('hello',function(MsgName,data){// 其中MsgName为消息的名字，data才是真正的数据
+        methods: {
+            sayHello(data){
                 console.log('我是School组件，收到了数据',data)
-            })
+            }
         },
+        mounted() {
+            //将函数sayHello挂载到bus上，命名为hello
+            this.$bus.$on('hello',this.sayHello)
+        },
+        //销毁之前用$off解绑当前组件所用到的事件
         beforeDestroy() {
-            //取消订阅
-            pubsub.unsubcribe(this.pubId)
+            this.$bus.$off('hello')
         },
-    }
+        }
 </script>
 <style scoped>
 /* @import url(); 引入css类 */
