@@ -1,24 +1,30 @@
 <template>
     <div>
+        <button @click="getStudents">获取汽车信息</button>
     </div>
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            
-        }
-    },
-    //生命周期 - 创建完成（访问当前this实例）
-    created() {
-        
-    },
-    //生命周期 - 挂载完成（访问DOM元素）
-    mounted() {
-        
+    import axios from 'axios'
+    export default {
+        data() {
+            return {
+                
+            }
+        },
+        methods: {
+            getStudents(){
+                axios.get('http://localhost:8080/carapi/cars').then(
+                    response=>{
+                        console.log('请求成功',response.data);
+                    },
+                    error=>{
+                        console.log('请求失败！',error.message)
+                    }
+                )
+            }
+        },
     }
-}
 </script>
 <style scoped>
 /* @import url(); 引入css类 */

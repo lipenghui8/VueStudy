@@ -14,7 +14,7 @@
         },
         methods: {
             getStudents(){
-                axios.get('http://localhost:5000/students').then(
+                axios.get('http://localhost:8080/api/students').then(
                     response=>{
                         console.log('请求成功',response.data);
                     },
