@@ -1,23 +1,46 @@
 <template>
     <div class="category">
-        <h3>{{title}}分类</h3>
-        <!-- solt定义一个插槽等待组件的使用者进行填充 -->
-        <!-- 为插槽命名 -->
-        <!-- 使用作用域插槽向插槽传数据 -->
-        <slot :games="games">我是默认值，当使用者没有传递具体结构时，我会出现</slot>
+        <h1>Vuex示例</h1>
+        <h3>当前的求和为:{{sum}}</h3>
+        <button @click="increment(n)">点击相加</button>
     </div>
 </template>
 
 <script>
-export default {
-    name:'Category',
-    props:['title'],
-    data() {
+    import {mapState,mapGetters,mapMutations,mapActions} from 'vuex'
+
+    export default {
+        name:'Category',
+        props:['title'],
+        data() {
             return {
-                games:['红色警戒','穿越火线','劲舞团','超级玛丽']
+                n:1
             }
         },
-}
+        methods: {
+            // increment(){
+            //     // dispatch提交给action
+            //     this.$store.dispatch('jia',this.n)
+            //     // commit直接提交给mutation
+            //     this.$store.commit('JIA',this.n)
+            // },
+
+            //借助mapMutation生成对应的方法调用Mutation，调用函数时需传参
+            ...mapMutations({increment:'JIA',}),
+            //借助mapMutation生成对应的方法调用Action
+            ...mapActions({increment:'jia'})
+
+        },
+        computed:{
+            //借助mapState生成计算属性，从state获取数据(数组写法)
+            ...mapState(['sum']),
+            //借助mapGetters生成计算属性，从state获取数据(数组写法)
+            ...mapGetters(['bigSum'])
+            // ...mapState(['sum','school','subject'])
+        },
+        mounted() {
+        },
+    }
 </script>
 <style scoped>
 /* @import url(); 引入css类 */
