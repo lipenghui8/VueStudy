@@ -5,7 +5,7 @@ import About from '../components/About'
 import Home from '../components/Home'
 
 //创建并暴露一个路由器
-export default new VueRouter({
+const router = new VueRouter({
     routes:[
         // 一级路由
         {
@@ -17,12 +17,25 @@ export default new VueRouter({
             // 使用params时path的写法,需要预先占位声明接收params参数
             // path:'/about/:id/:name',
 
-            component:About
+            component:About,
+
+            // 可选，使用meta属性添加路由源信息,通常用来配合路由守卫
+            meta:{isAuth:false}
         },
         {
             name:'zhuye',
             path:'/home',
             component:Home,
+            
+            //配置独享路由守卫,只有前置，没有后置
+            beforeEnter:(to,from,next)=>{
+                if('judge'){
+                    next()
+                }else{
+                    alert("无权查看！")
+                }
+            },
+
             // 多级路由
             children:[
                 {
@@ -46,3 +59,29 @@ export default new VueRouter({
         }
     ]
 })
+
+// 全局前置路由守卫，初始化时被调用、每次路由切换之前被调用
+router.beforeEach((to,from,next)=>{
+    console.log('前置路由守卫:',to,from)
+    console.log('读取路由元信息:',to.meta.title)
+    document.title=to.meta.title
+    if(to.meta.isAuth){
+        if('判断'){
+            next()
+        }else{
+            alert("无权查看！")
+        }
+    }
+    else{
+        next()
+    }
+})
+
+//全局后置路由守卫,初始化时被调用、每次路由切换之后被调用，用的不多
+router.afterEach(()=>{
+    console.log("后置路由守卫:",)
+    document.title=to.meta.title //修改网站标题
+}) 
+
+
+export default router

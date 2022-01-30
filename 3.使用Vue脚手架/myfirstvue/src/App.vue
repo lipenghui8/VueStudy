@@ -65,6 +65,11 @@
                     <div class="panel-body">
                         <!-- 指定组件的呈现位置 -->
                         <router-view></router-view>
+
+                        <!-- 缓存路由组件,当页面跳走是数据不会丢失，常用语带输入的页面,include为所要缓存的页面，值为组件名，默认为都缓存 -->
+                        <keep-alive include="News">
+                            <router-view></router-view>
+                        </keep-alive>
                     </div>
                 </div>
             </div>
