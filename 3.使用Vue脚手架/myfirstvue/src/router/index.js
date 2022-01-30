@@ -6,6 +6,8 @@ import Home from '../components/Home'
 
 //创建并暴露一个路由器
 const router = new VueRouter({
+    // 路由有两种工作模式：hash和history,hash具有更好的兼容性，history美观，没有/#/
+    mode:history,//设置为history模式
     routes:[
         // 一级路由
         {
