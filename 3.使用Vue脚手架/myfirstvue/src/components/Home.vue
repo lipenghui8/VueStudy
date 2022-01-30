@@ -1,6 +1,10 @@
 <template>
     <div>
         <h2>我是Home的内容</h2>
+        <!-- 使用query方式传参 -->
+        <h2>接收到的参数:{{$route.query.id}}</h2>
+        <!-- 使用param方式传参 -->
+        <h2>params方式传参:{{$route.params.id}}</h2>
     </div>
 </template>
 
